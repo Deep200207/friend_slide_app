@@ -69,7 +69,7 @@ export default function Home() {
                             <SiSlides className='md:hidden w-[40%] h-[40%] p-5 bg-orange-400 text-violet-900 rounded mb-15'></SiSlides>
                           </div>
 
-                          <NavLink to={"/reg"} className='text-lg bg-amber-500 p-2 cursor-pointer rounded-2xl '>Sign-up</NavLink>
+                          <NavLink to={"/reg"} className='text-lg bg-amber-600 text-white p-2 cursor-pointer rounded-2xl '>Sign-up</NavLink>
                         </>
                       }
                     </div>
