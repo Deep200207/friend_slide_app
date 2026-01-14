@@ -2,7 +2,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { io } from 'socket.io-client';
 
-const SOCKET_URL = "http://localhost:3000"; // change to your server
+const SOCKET_URL = import.meta.env.VITE_SOCKET_URL; // change to your server
 
 export default function ChatApp() {
   const [socket, setSocket] = useState(null);

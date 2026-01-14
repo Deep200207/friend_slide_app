@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { getFriends, searchFrnds } from '../features/frndSlice';
 import { useDispatch, useSelector } from 'react-redux';
+const BASE_URL=import.meta.env.VITE_BACKEND_URL;
 
 export default function AddFriend() {
     const dispatch = useDispatch();
@@ -14,7 +15,7 @@ export default function AddFriend() {
     const acceptRequest=async(id)=>{
         try{
             const token=localStorage.getItem("slide_token");
-            const res= await fetch(`http://localhost:3000/api/friends/accept/${encodeURIComponent(id)}`,{
+            const res= await fetch(`${BASE_URL}/api/friends/accept/${encodeURIComponent(id)}`,{
                 method:"PUT",
                 headers:{
                     Authorization: `Bearer ${token}`
@@ -30,7 +31,7 @@ export default function AddFriend() {
     const pendingReceiver = async () => {
         try {
             const token = localStorage.getItem("slide_token");
-            const res = await fetch(`http://localhost:3000/api/friends/pendingReceiver`, {
+            const res = await fetch(`${BASE_URL}/api/friends/pendingReceiver`, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -49,7 +50,7 @@ export default function AddFriend() {
     const pendingRequest = async () => {
         try {
             const token = localStorage.getItem("slide_token");
-            const res = await fetch(`http://localhost:3000/api/friends/pending`, {
+            const res = await fetch(`${BASE_URL}/api/friends/pending`, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -68,7 +69,7 @@ export default function AddFriend() {
     const addFriend = async (id) => {
         try {
             const token = localStorage.getItem("slide_token")
-            const res = await fetch(`http://localhost:3000/api/friends/request/${encodeURIComponent(id)}`, {
+            const res = await fetch(`${BASE_URL}/api/friends/request/${encodeURIComponent(id)}`, {
                 method: "POST",
                 headers: {
                     Authorization: `Bearer ${token}`

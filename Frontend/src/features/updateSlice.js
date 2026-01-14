@@ -1,9 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+const BASE_URL=import.meta.env.VITE_BACKEND_URL;
 
 export const updateUser = createAsyncThunk(
     "updateUser",
     async ({ name, gender, relationship, dob, phone, email, notes }) => {
-        const res = await fetch("http://localhost:3000/update", {
+        const res = await fetch(`${BASE_URL}/update`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             credentials:"include",

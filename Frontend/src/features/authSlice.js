@@ -1,12 +1,13 @@
 import { createSlice, createAsyncThunk, isRejectedWithValue } from "@reduxjs/toolkit";
 import { useNavigate } from "react-router-dom";
+const BASE_URL=import.meta.env.VITE_BACKEND_URL;
 // import { data } from "react-router-dom";
 
 
 export const sendUser = createAsyncThunk(
   "user/sendUser",
   async ({ name, email, password }) => {
-    const res = await fetch("http://localhost:3000/api/signup", {
+    const res = await fetch(`${BASE_URL}/api/signup`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ name, email, password }),
@@ -21,7 +22,7 @@ export const sendUser = createAsyncThunk(
 export const loginUser = createAsyncThunk(
   "user/loginUser",
   async ({ email, password },{rejectWithValue}) => {
-    const res = await fetch("http://localhost:3000/api/login", {
+    const res = await fetch(`${BASE_URL}/api/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password }),

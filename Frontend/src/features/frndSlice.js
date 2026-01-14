@@ -1,67 +1,12 @@
-// import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-
-// export const addfrnd = createAsyncThunk(
-//     "user/friendadd",
-//     async ({ address, name, relationship, gender, dob, phone, email, notes }, { rejectWithValue }) => {
-//         try {
-//             const res = await fetch("http://localhost:3000/add",
-//                 {
-//                     method: "POST",
-//                     headers: { "Content-Type": "application/json" },
-//                     body: JSON.stringify({ address, name, relationship, gender, dob, phone, email, notes })
-//                 }
-//             );
-//             const data = await res.json();
-//             if (!res.ok) {
-//                 return rejectWithValue({ error: data.error });
-//             }
-//             return data;
-//         } catch (err) {
-//             return rejectWithValue({ error: "Network Error" });
-//         }
-//     }
-// )
-// const frndSlice = createSlice({
-//     name: "friendSlide",
-//     initialState: {
-//         frnd: null,
-//         loading: false,
-//         error: null,
-//         response: null,
-//         isCreate: false,
-//         message: null
-//     },
-//     extraReducers: (builder) => {
-//         builder
-//             .addCase(addfrnd.pending, (state) => {
-//                 state.loading = true;
-//                 state.error = null;
-//                 state.response = null;
-//             })
-//             .addCase(addfrnd.fulfilled, (state, action) => {
-//                 state.loading = false;
-//                 // state.frnd=action.meta.arg;
-//                 state.frnd = action.meta.arg
-//                 state.response = action.payload.message;
-//                 state.isCreate = true;
-//             })
-//             .addCase(addfrnd.rejected, (state, action) => {
-//                 state.error = action.payload?.error;
-//                 // state.message=action.payload.message;
-//                 state.loading = false;
-//                 state.isCreate = false;
-//             })
-//     }
-// })
-// export default frndSlice.reducer;
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+const BASE_URL=import.meta.env.VITE_BACKEND_URL;
 export const searchFrnds = createAsyncThunk(
     "user/searchFrnds",
     async (name, { rejectWithValue }) => {
         try {
             const token = localStorage.getItem("slide_token")
             console.log(token)
-            const res = await fetch(`http://localhost:3000/api/friends/search?search=${encodeURIComponent(name)}`, {
+            const res = await fetch(`${BASE_URL}/api/friends/search?search=${encodeURIComponent(name)}`, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -82,7 +27,7 @@ export const getFriends = createAsyncThunk(
         async (_,{ rejectWithValue }) => {
             try {
                 const token = localStorage.getItem("slide_token")
-                const res = await fetch("http://localhost:3000/api/friends/get", {
+                const res = await fetch(`${BASE_URL}/api/friends/get`, {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }
