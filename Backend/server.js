@@ -34,7 +34,7 @@ app.get("/check-cookie", (req, res) => {
     res.send(req.cookies);
 });
 
-
-app.listen(process.env.PORT,()=>{
-    console.log(`server running at port ${process.env.PORT}`);
+const PORT = process.env.PORT || 5000;
+app.listen(PORT,()=>{
+    console.log(`server running at port ${PORT}`);
 })
