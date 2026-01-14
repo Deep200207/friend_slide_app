@@ -25,7 +25,7 @@ mongoose.connect(process.env.MONGO_URI)
   .catch(err => console.error("MongoDB error:", err));
 
 app.get("/test", (req, res) => {
-    res.send("Server and DB are working!");
+    res.send("change in deploy!");
 });
 app.use("/api",authUser);
 app.use("/api/friends",router)
