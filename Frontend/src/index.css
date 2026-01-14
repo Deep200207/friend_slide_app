@@ -1,0 +1,24 @@
+@import "tailwindcss";
+
+*{
+  /* background-color: black; */
+  /* color: white; */
+  /* font-family: Arial, Helvetica, sans-serif; */
+  box-sizing: border-box;
+}
+body{
+  background: linear-gradient(to bottom ,rgb(8, 1, 12),rgb(91, 1, 133));
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100vh; 
+  color: white;
+  overflow-x: hidden;
+}
+#create-heading{
+ font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS'
+}
+#text-style{
+  color: rgb(250, 5, 17);
+  font-family: cursive;
+  text-shadow: 0 0 2px;
+}
