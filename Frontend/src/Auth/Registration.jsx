@@ -37,7 +37,7 @@ export default function Registration() {
 
         <div className="mt-[30%] sm:mt-20 flex justify-center w-full">
           <div
-            className=" md:w-[50%] bg-gradient-to-b from-violet-600 via-violet-700 to-violet-800 rounded-3xl text-center space-y-5  p-2 md:p-5"
+            className=" md:w-[50%] bg-gradient-to-b from-violet-600 via-violet-700 to-violet-800 rounded-3xl text-center space-y-5 pt-10  p-2 md:p-5"
           >
             {/* Loading */}
             {loading && <h1 style={{ color: "yellow" }}>Loading...</h1>}
