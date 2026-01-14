@@ -18,9 +18,9 @@ export default function App() {
           <Routes>
             <Route path='/' element={ <> <Navbar/> <Home/></>}/>
             <Route path='/home' element={ <> <Navbar/> <Home/></>}/>
-            <Route path="/login" element={<><Login></Login></>}/>
+            <Route path="/login" element={<><Navbar></Navbar><Login></Login></>}/>
             <Route path='/chat' />
-            <Route path="/reg" element={<Registration/>}/>
+            <Route path="/reg" element={<><Navbar></Navbar><Registration/></>}/>
             <Route path='/create' element={<><Navbar></Navbar><Create></Create></>}></Route>
             <Route path='/view' element={<><Navbar></Navbar><View></View></>}/>
             <Route path='/update' element={<><Navbar></Navbar><Update></Update></>}></Route>
