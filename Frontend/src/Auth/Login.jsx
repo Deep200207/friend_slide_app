@@ -17,11 +17,11 @@ export default function Login() {
         }
     return (
         <div className='flex justify-center '>
-            <div className='w-[80%] '>
+            <div className='md:w-[80%] '>
                 <h1 className='text-center text-3xl font-bold font-sans 
       mt-15 ' style={{textShadow:"textShadow: 2px 2px 5px blue"}}>Login Here</h1>
                 <div className=' mt-10 flex justify-center'>
-                    <div className='w-[60%] bg-slate-800 text-gray-200   md:w-[50%] shadow-xl rounded-3xl text-center space-y-2 pt-15 p-5'>
+                    <div className='md:w-[60%] bg-gradient-to-b from-violet-600 via-violet-700 to-violet-800 text-gray-200 shadow-xl rounded-3xl text-center space-y-2 pt-15 p-5'>
                         {error ? <h1 className='text-red-600 font-bold'>{error}</h1> : ""}
                         {loading? <h1 className='text-yellow-500 font-bold'>Loading....</h1> :""}
                         {response && (
@@ -30,7 +30,7 @@ export default function Login() {
                             </h1>
                         )}
                         <div className='flex justify-center space-x-1'>
-                            <div className='text-sm md:text-lg  w-[60%] md:w-25 font-bold '><h1 className='float-right' >Email :</h1></div>
+                            <div className='text-lg  w-[60%] md:w-25 font-bold '><h1 className='float-right' >Email :</h1></div>
                             <input type='text' value={email} placeholder='Enter Email' className='text-black border-none outline-0 bg-slate-300 rounded
                             p-1' onChange={(e) => setemail(e.target.value)}></input>
                         </div>
