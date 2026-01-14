@@ -11,7 +11,7 @@ export default function Home() {
   const [selected, setSelected] = useState([]); // array of selected user(s)
   const [auth, setAuth] = useState(false);
   const searchTerm = useSelector(state => state.search.term);
-  const {frndsList}=useSelector(state=>state.friend)
+  const { frndsList } = useSelector(state => state.friend)
   const user = JSON.parse(localStorage.getItem("slide_user"));
 
   const filterUser = slides.filter(s =>
@@ -64,7 +64,13 @@ export default function Home() {
                           <NavLink to={"/create"} className='lg:text-xl text-lg bg-amber-600 m-2  p-2 cursor-pointer hover:bg-amber-700 rounded-2xl'>Add Your Friends +</NavLink>
                         </div>
                       </> :
-                        <NavLink to={"/reg"} className='text-lg bg-amber-500 p-2 cursor-pointer rounded-2xl '>Sign-up</NavLink>
+                        <>
+                          <div className='flex justify-center items-center'>
+                            <SiSlides className='md:hidden w-[40%] h-[40%] p-5 bg-orange-400 text-violet-900 rounded mb-15'></SiSlides>
+                          </div>
+
+                          <NavLink to={"/reg"} className='text-lg bg-amber-500 p-2 cursor-pointer rounded-2xl '>Sign-up</NavLink>
+                        </>
                       }
                     </div>
                   </div>
