@@ -15,7 +15,7 @@ const app=express();
 app.use(cookieParser());
 app.use(express.json());
 app.use(cors({
-  origin: ["http://localhost:5173" ],// frontend URL
+  origin: ["http://localhost:5173","https://friend-slide-app.vercel.app" ],// frontend URL
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true
 }));
