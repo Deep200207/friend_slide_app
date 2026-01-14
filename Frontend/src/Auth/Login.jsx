@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 
 
 export default function Login() {
-    const { error, loading,response ,user} = useSelector((state) => state.auth);
+    const { error, loading, response, user } = useSelector((state) => state.auth);
     const [email, setemail] = useState("");
     const [password, setpassword] = useState("");
     const dispath = useDispatch();
@@ -14,30 +14,31 @@ export default function Login() {
     const handleSubmit = () => {
         dispath(loginUser({ email, password }));
         // dispath(saveUser({}))
-        }
+    }
     return (
         <div className='flex justify-center '>
             <div className='md:w-[80%] '>
                 <h1 className='text-center text-3xl font-bold font-sans 
-      mt-15 ' style={{textShadow:"textShadow: 2px 2px 5px blue"}}>Login Here</h1>
+      mt-15 ' style={{ textShadow: "textShadow: 2px 2px 5px blue" }}>Login Here</h1>
                 <div className=' mt-10 flex justify-center'>
-                    <div className='md:w-[60%] bg-gradient-to-b from-violet-600 via-violet-700 to-violet-800 text-gray-200 shadow-xl rounded-3xl text-center space-y-2 pt-15 p-2 md:p-5'>
+                    <div className='md:w-[50%] bg-gradient-to-b from-violet-600 via-violet-700 to-violet-800 text-gray-200 shadow-xl rounded-3xl text-center space-y-2 pt-15 p-2 md:p-5'>
                         {error ? <h1 className='text-red-600 font-bold'>{error}</h1> : ""}
-                        {loading? <h1 className='text-yellow-500 font-bold'>Loading....</h1> :""}
+                        {loading ? <h1 className='text-yellow-500 font-bold'>Loading....</h1> : ""}
                         {response && (
                             <h1 style={{ color: "green" }}>
                                 {response.message || ""}
                             </h1>
                         )}
-                        <div className='flex justify-center space-x-1'>
-                            <div className=' p-1  md:text-lg  w-[60%] md:w-25 font-bold '><h1 className='float-right' >Email :</h1></div>
-                            <input type='text' value={email} placeholder='Enter Email' className='text-black border-none outline-0 bg-slate-300 rounded
-                            p-1 md:text-lg' onChange={(e) => setemail(e.target.value)}></input>
+                        <div className='flex justify-center space-x-1 mt-3'>
+                            <div className='p-1 md:text-lg w-23 md:w-25 font-bold '><h1 className='float-right'>Email:</h1></div>
+                            <input type='text' value={email} placeholder='Enter Email' className='
+                             text-black bg-slate-200 border-none outline-0 md:p-1 rounded p-1'
+                                onChange={(e) => setemail(e.target.value)}></input>
                         </div>
                         <div className='flex justify-center space-x-1 mt-3'>
-                            <div className='p-1  md:text-lg w-23 md:w-25 font-bold '><h1 className='float-right'>Password :</h1></div>
+                            <div className='p-1 md:text-lg w-23 md:w-25 font-bold '><h1 className='float-right'>Password :</h1></div>
                             <input type='password' value={password} placeholder='Enter Password' className='
-                             text-black bg-slate-300 border-none outline-0 md:p-1 rounded p-1'
+                             text-black bg-slate-200 border-none outline-0 md:p-1 rounded p-1'
                                 onChange={(e) => setpassword(e.target.value)}></input>
                         </div>
                         <div>

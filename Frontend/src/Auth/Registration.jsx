@@ -75,7 +75,7 @@ export default function Registration() {
               </input>
             </div>
             <div className='flex justify-center space-x-1 mt-3'>
-              <div className='p-1  md:text-lg w-23 md:w-25 font-bold '><h1 className='float-right'>Password :</h1></div>
+              <div className='p-1 md:text-lg w-23 md:w-25 font-bold '><h1 className='float-right'>Password :</h1></div>
               <input type='password' value={password} placeholder='Enter Password' className='
                              text-black bg-slate-200 border-none outline-0 md:p-1 rounded p-1'
                 onChange={(e) => setPassword(e.target.value)}></input>
