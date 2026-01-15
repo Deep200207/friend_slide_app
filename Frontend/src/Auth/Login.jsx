@@ -18,14 +18,13 @@ export default function Login() {
     return (
         <div className='flex justify-center '>
             <div className='md:w-[80%] '>
-                <h1 className='text-center text-3xl font-bold font-sans 
-      mt-15 ' style={{ textShadow: "textShadow: 2px 2px 5px blue" }}>Login Here</h1>
+                <h1 className='text-center text-3xl font-bold font-sans mt-25'>Login Here </h1>
                 <div className=' mt-10 flex justify-center'>
                     <div className='md:w-[50%] bg-gradient-to-b from-violet-600 via-violet-700 to-violet-800 text-gray-200 shadow-xl rounded-3xl text-center space-y-2 pt-15 p-2 md:p-5'>
                         {error ? <h1 className='text-red-600 font-bold'>{error}</h1> : ""}
                         {loading ? <h1 className='text-yellow-500 font-bold'>Loading....</h1> : ""}
                         {response && (
-                            <h1 style={{ color: "green" }}>
+                            <h1 className='text-green-400 font-bold'>
                                 {response.message || ""}
                             </h1>
                         )}

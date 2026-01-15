@@ -101,7 +101,7 @@ export default function Navbar() {
             </>
           ) : (
             <>
-              <NavLink to="/login">Login</NavLink>
+              <div><NavLink className="" to="/login">Login</NavLink></div>
               <NavLink to="/reg">Register</NavLink>
             </>
           )}
@@ -118,16 +118,19 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {menuOpen && (
-        <div className="md:hidden bg-purple-800 text-white px-6 py-4 space-y-4">
+        <div className="md:hidden w-[50%] rounded float-right bg-purple-800 text-white px-6 py-4 space-y-4">
           {navItems.map(({ path, label }) => (
-            <NavLink
-              key={path}
-              to={path}
-              onClick={() => setMenuOpen(false)}
-              className="block font-bold"
-            >
-              {label}
-            </NavLink>
+            <div className="flex flex-col">
+              <div className="" key={path}>
+                <NavLink
+                  to={path}
+                  onClick={() => setMenuOpen(false)}
+                  className="block font-bold float-right p-1"
+                >
+                  {label}
+                </NavLink>
+              </div>
+            </div>
           ))}
 
           {users && (
@@ -141,7 +144,7 @@ export default function Navbar() {
 
           {users ? (
             <div className="space-y-2">
-              <button className="w-full bg-orange-400 py-2 rounded-xl font-bold">
+              <button className="w-full bg-orange-400 py-2 rounded-xl font-bold ">
                 {users.data.name}
               </button>
               <button
@@ -152,13 +155,17 @@ export default function Navbar() {
               </button>
             </div>
           ) : (
-            <div className="space-y-2">
-              <NavLink to="/login" className="block">
-                Login
-              </NavLink>
-              <NavLink to="/reg" className="block">
-                Register
-              </NavLink>
+            <div className="space-y-2 flex flex-col">
+              <div className=" ">
+                <NavLink to="/login" className="block float-right  p-1">
+                  Login
+                </NavLink>
+              </div>
+              <div className="">
+                <NavLink to="/reg" className="block float-right p-1 ">
+                  Register
+                </NavLink>
+              </div>
             </div>
           )}
         </div>

@@ -97,7 +97,7 @@ export default function AddFriend() {
 
     return (
         <div className='flex'>
-            <div className='md:w-[70%] w-[75%]'>
+            <div className='md:w-[70%] '>
                 <div className='mt-20 flex justify-center items-center w-full '>
                     <div className='w-fit p-5 rounded-lg flex flex-col justify-center items-center'>
                         <h1 className='font-semibold text-xl mt-5'>Search And Make Friends</h1>
@@ -126,7 +126,7 @@ export default function AddFriend() {
                 </div>
 
             </div>
-            <div className='w-[25%] md:w-[30%] mt-20'>
+            <div className='md:w-[30%] mt-20  md:flex'>
                 <div className='flex justify-center items-center'>
                     <div className=''>
                         {pendingList.length > 0 && <h1 className=' mt-1 lg:mt-2 p-1 font-semibold text-center'>Pending Sent Request</h1>}

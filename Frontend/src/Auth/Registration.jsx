@@ -31,11 +31,11 @@ export default function Registration() {
   return (
     <div className="flex justify-center">
       <div className="w-full">
-        <h1 className="text-center text-3xl font-bold font-serif text-white text-shadow-lg mt-10">
+        <h1 className="text-center text-3xl font-bold font-serif text-white text-shadow-lg mt-25">
           Register Here
         </h1>
 
-        <div className="mt-[30%] sm:mt-20 flex justify-center w-full">
+        <div className="mt-[30%] sm:mt-20 flex justify-center w-full mb-10">
           <div
             className=" md:w-[50%] bg-gradient-to-b from-violet-600 via-violet-700 to-violet-800 rounded-3xl text-center space-y-5 pt-10  p-2 md:p-5"
           >
