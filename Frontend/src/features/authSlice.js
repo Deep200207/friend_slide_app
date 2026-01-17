@@ -1,9 +1,10 @@
 import { createSlice, createAsyncThunk, isRejectedWithValue } from "@reduxjs/toolkit";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 const BASE_URL=import.meta.env.VITE_BACKEND_URL;
 // import { data } from "react-router-dom";
 
-
+// const [user, setUser] = useState(JSON.parse(localStorage.getItem("slide_user")) || null);
 export const sendUser = createAsyncThunk(
   "user/sendUser",
   async ({ name, email, password }) => {
@@ -38,7 +39,7 @@ export const loginUser = createAsyncThunk(
 const userSlice = createSlice({
   name: "user",
   initialState: {
-    user: null,
+    user: JSON.parse(localStorage.getItem("slide_user")) || null,
     loading: false,
     error: null,
     response: null,
@@ -50,6 +51,10 @@ const userSlice = createSlice({
     },
     loginfail: (state, action) => {
       state.error = action.payload;
+    },
+    logout: (state) => {
+      localStorage.removeItem("slide_user");
+      state.user=null;
     }
   },
   extraReducers: (builder) => {
@@ -75,8 +80,10 @@ const userSlice = createSlice({
       .addCase(loginUser.fulfilled, (state, action) => {
         state.loading = false,
         state.user = action.payload.data,
+        console.log(action.payload.data);
         state.response = action.payload
         localStorage.setItem("slide_user",JSON.stringify(action.payload))
+        // setUser(action.payload);
         // console.log(action.payload.data.token);
         localStorage.setItem("slide_token",action.payload.data.token)
         state.isAuth=true;
@@ -85,9 +92,10 @@ const userSlice = createSlice({
       .addCase(loginUser.rejected, (state, action) => {
         state.loading = false,
           state.error = action.payload.error
+          console.log(action.payload);
       })
   }
 });
 
-export const { signupfail } = userSlice.actions;
+export const { signupfail,logout } = userSlice.actions;
 export default userSlice.reducer;

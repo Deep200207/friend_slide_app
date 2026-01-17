@@ -5,19 +5,25 @@ import { NavLink } from 'react-router-dom'
 import { SiSlides } from "react-icons/si";
 // import { FiSend } from "react-icons/fi";
 import { LuSendHorizontal } from "react-icons/lu";
+import { logout } from '../features/authSlice';
+
 
 export default function Home() {
   const [slides, setSlides] = useState([]);
   const [selected, setSelected] = useState([]); // array of selected user(s)
   const [auth, setAuth] = useState(false);
+  // const {logout} = useSelector((state) => state.auth);
   const searchTerm = useSelector(state => state.search.term);
   const { frndsList } = useSelector(state => state.friend)
-  const user = JSON.parse(localStorage.getItem("slide_user"));
+  // const [user, setUser]=useState(JSON.parse(localStorage.getItem("slide_user"))||"");
+  const { user } = useSelector((state) => state.auth);
 
   const filterUser = slides.filter(s =>
     (s?.name || "").toLowerCase().includes((searchTerm || "").toLowerCase())
   );
-
+  useEffect(() => {
+    // setUser(JSON.parse(localStorage.getItem("slide_user"))||"");/
+  }, [logout])
   const toggle = (email) => {
     const newSelected = frndsList.filter(s => s.email === email);
     setSelected(newSelected);
@@ -48,7 +54,7 @@ export default function Home() {
             ) : (
               <>
                 <div className='md:flex justify-center h-150 items-center w-full '>
-                  <div className='w-full md:w-[100%] text-center md:m-20  float-right mt-20 md:mt-10'>
+                  <div className='w-full md:w-[100%] text-center md:m-20  float-right mt-20 md:mt-20'>
                     <h1 className='text-2xl md:text-3xl lg:text-5xl font-sans'>A New Way</h1>
                     <div className='flex justify-center'>
                       <div className='flex space-x-3 text-3xl md:text-4xl lg:text-5xl font-sans mt-2'>
@@ -66,10 +72,15 @@ export default function Home() {
                       </> :
                         <>
                           <div className='flex justify-center items-center'>
-                            <SiSlides className='md:hidden w-[40%] h-[40%] p-5 bg-orange-400 text-violet-900 rounded mb-15'></SiSlides>
+                            <SiSlides className='md:hidden w-[40%] h-[40%] p-5 bg-orange-400 text-violet-900 rounded mb-10'></SiSlides>
                           </div>
-
-                          <NavLink to={"/reg"} className='text-lg bg-amber-600 text-white p-2 cursor-pointer rounded-2xl '>Sign-up</NavLink>
+                          <div className='p-5 text-amber-400 mb-8 md:mb-5'>
+                            <h1 className='text-lg font-semibold '>Create flashcards of friends</h1>
+                            <h1 className='text-lg font-semibold '>And also</h1>
+                            <h1 className='text-lg font-semibold text-white'>Do chat with them</h1>
+                          </div>
+                          <h1 className='text-xl font-semibold p-3 text-amber-400'>Register Now !!</h1>
+                          <NavLink to={"/reg"} className='text-lg bg-amber-600 text-white p-2 cursor-pointer rounded-xl '>Sign-up</NavLink>
                         </>
                       }
                     </div>

@@ -2,18 +2,18 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import { setSearchTerm } from "./features/searchSlice";
-
+import { logout } from "./features/authSlice";
 export default function Navbar() {
-  const { user } = useSelector((state) => state.auth);
+  // const { logout} = useSelector((state) => state.auth);
   const searchTerm = useSelector((state) => state.search.term);
   const [menuOpen, setMenuOpen] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleLogout = () => {
-    localStorage.removeItem("slide_user");
+  const  handleLogout = () => {
+    dispatch(logout());
     navigate("/");
-    alert("Logout Successful");
+    // alert("Logout Successfully");
   };
 
   const users = JSON.parse(localStorage.getItem("slide_user"));
