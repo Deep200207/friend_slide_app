@@ -54,6 +54,7 @@ const userSlice = createSlice({
     },
     logout: (state) => {
       localStorage.removeItem("slide_user");
+      localStorage.removeItem("slide_token");
       state.user=null;
     }
   },
