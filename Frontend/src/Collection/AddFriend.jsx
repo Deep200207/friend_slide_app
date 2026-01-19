@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { getFriends, searchFrnds } from '../features/frndSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 const BASE_URL=import.meta.env.VITE_BACKEND_URL;
 
 export default function AddFriend() {
@@ -96,7 +97,7 @@ export default function AddFriend() {
     }, [searchTerm])
 
     return (
-        <div className='flex'>
+        <div className='md:flex'>
             <div className='md:w-[70%] '>
                 <div className='mt-20 flex justify-center items-center w-full '>
                     <div className='w-fit p-5 rounded-lg flex flex-col justify-center items-center'>
@@ -114,7 +115,8 @@ export default function AddFriend() {
                                         <div className='w-10 h-10 md:w-12 md:h-12 rounded-full bg-cover bg-center' style={{ backgroundImage: `url(${item.pic})` }}>
                                         </div>
                                         <h1 className='font-semibold m-2 md:m-3 ml-5 '>{item?.email}</h1>
-                                        <button className='text-sm md:font-normal ml-auto bg-violet-600 text-white p-1 md:p-2 rounded-lg '
+                                        <button className='text-sm md:font-normal ml-auto bg-violet-600 text-white p-1 md:p-2 rounded-lg 
+                                        cursor-pointer hover:bg-violet-700      '
                                             onClick={() => addFriend(item._id)}>Send Request</button>
                                         {/* ml-auto push button right take all left space if parent is flex */}
                                     </div>
@@ -126,7 +128,9 @@ export default function AddFriend() {
                 </div>
 
             </div>
-            <div className='md:w-[30%] mt-20  md:flex'>
+
+            <div></div>
+            <div className='md:w-[30%] mt-20  '>
                 <div className='flex justify-center items-center'>
                     <div className=''>
                         {pendingList.length > 0 && <h1 className=' mt-1 lg:mt-2 p-1 font-semibold text-center'>Pending Sent Request</h1>}
@@ -138,7 +142,7 @@ export default function AddFriend() {
                                             <div className='w-10 h-10 rounded-full  bg-cover bg-center m-1' style={{ backgroundImage: `url(${item?.recevier?.pic})` }
                                             }></div>
                                             <h1 className='m-2 font-semibold text-slate-800  p-1'>{item?.recevier?.name}</h1>
-                                            <button className='ml-auto p-1 m-1 bg-amber-500 text-white font-semibold rounded'>Pending</button>
+                                            <button className=' p-1 m-1 bg-amber-500 text-white font-semibold rounded'>Pending</button>
                                         </div>
                                     )
                                 })
@@ -178,7 +182,8 @@ export default function AddFriend() {
                                     <div className='w-10 h-10 rounded-full bg-amber-500 bg-cover bg-center'
                                      style={{backgroundImage:`url(${item.pic})`}}></div>
                                     <h1 className='m-2 font-semibold'>{item.name}</h1>
-                                    <button className='ml-auto p-1 m-1 bg-violet-500 text-white font-semibold rounded'>Message</button>
+                                    <Link to="/"className='ml-auto p-1 m-1 bg-violet-500 text-white font-semibold rounded'
+                                    >Message</Link>
                                 </div>
                             )
                         })

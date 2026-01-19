@@ -1,22 +1,24 @@
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 
 import { SiSlides } from "react-icons/si";
 // import { FiSend } from "react-icons/fi";
 import { LuSendHorizontal } from "react-icons/lu";
 import { logout } from '../features/authSlice';
+import { getFriends } from '../features/frndSlice';
 
 
 export default function Home() {
   const [slides, setSlides] = useState([]);
   const [selected, setSelected] = useState([]); // array of selected user(s)
   const [auth, setAuth] = useState(false);
-  // const {logout} = useSelector((state) => state.auth);
+  const [check, setCheck] = useState(false);
+  const dispatch = useDispatch();
   const searchTerm = useSelector(state => state.search.term);
   const { frndsList } = useSelector(state => state.friend)
-  // const [user, setUser]=useState(JSON.parse(localStorage.getItem("slide_user"))||"");
   const { user } = useSelector((state) => state.auth);
+  const [Toggle, setToggle] = useState(false);
 
   const filterUser = slides.filter(s =>
     (s?.name || "").toLowerCase().includes((searchTerm || "").toLowerCase())
@@ -28,30 +30,62 @@ export default function Home() {
     const newSelected = frndsList.filter(s => s.email === email);
     setSelected(newSelected);
   }
+  useEffect(() => {
+    dispatch(getFriends());
+    // console.log(frndsList);
+  }, [])
 
   return (
     <>
       <div className='font-bold '>
-        <div className='flex flex-col md:flex-row  w-full'>
-          <div className='md:w-[40%] mt-20'>
-            {frndsList.length > 0 ? <h1 className='text-xl font-bold m-2 '>Your Friends</h1> : ""}
-            {frndsList.length > 0 ? (
+        <div className='md:flex  w-full'>
+          <div className='md:w-[40%] mt-15'>
+            {frndsList.length > 0 && (!Toggle && !check) ? <h1 className='text-xl font-bold m-2 text-center'>Your Friends</h1> : (frndsList.length > 0) ? "" : <h1></h1>}
+            {frndsList.length > 0 && (!Toggle && !check) ? (
               frndsList.map((data, i) => {
-
                 return (
-                  <div className='border-b-2 bg-purple-800' key={i}>
-                    <div>
-                      <button className='cursor-pointer  hover:bg-violet-900 w-full p-2 ' onClick={() => toggle(data?.email)}>
-                        <div className='flex'>
-                          <div style={{ backgroundImage: `url(${data?.pic})` }} className='w-15 h-15 bg-cover bg-center rounded-full'></div>
-                          <h1 className='mt-3 m-1 p-1'>{data.name}</h1>
+                  <div className='md:border-b-2 mt-2' key={i}>
+                    <div className='flex justify-center items-center '>
+                      <button className='cursor-pointer bg-violet-800 w-[80%] md:w-full p-2 border-b-2 md:border-0 rounded
+                       ' onClick={() => {
+                          toggle(data?.email)
+                          setToggle(!Toggle)
+                          setCheck(true);
+                        }}>
+                        <div className='flex '>
+                          <div style={{ backgroundImage: `url(${data?.pic})` }} className='w-10  md:w-15 h-10 md:h-15 bg-cover bg-center rounded-full'></div>
+                          <h1 className='md:mt-3 m-1 p-1'>{data.name}</h1>
                         </div>
                       </button>
                     </div>
                   </div>
                 )
               })
-            ) : (
+            ) : (frndsList.length > 0) ? selected.length > 0 && (
+              <div className=' md:hidden'>
+                <div className='flex bg-purple-950 '>
+                  <div>
+                    <div style={{ backgroundImage: `url(${selected[0]?.pic})` }} className='w-10 h-10 bg-cover bg-center rounded-full m-1' />
+                  </div>
+                  <h1 className='m-2 mt-3'>{selected[0]?.name}</h1>
+                  {/* <h1 className='m-2 mt-3 '>{selected[0]?.name}</h1> */}
+                  <div className='w-full p-2'>
+                    <div className=''>
+                      <button className='float-right bg-purple-500 pl-2 pr-2 font-semibold rounded-full' 
+                      onClick={()=>{
+                        setCheck(false)
+                        setToggle(!Toggle)}}> X </button>
+                    </div>
+                  </div>
+                </div>
+                <div className='w-full h-111 border-b-1 bg-purple-700'>
+
+                </div>
+                <div className='flex p-1'>
+                  <input type="text" className='w-[90%] h-12 float-left p-2 bg-violet-900 border-1 rounded-xl outline-0 ' />
+                  <LuSendHorizontal className='w-12 h-12 bg-violet-950 text-amber-400 p-1 ml-1 rounded-full' />
+                </div>
+              </div>) : (
               <>
                 <div className='md:flex justify-center h-150 items-center w-full '>
                   <div className='w-full md:w-[100%] text-center md:m-20  float-right mt-20 md:mt-20'>
@@ -79,7 +113,7 @@ export default function Home() {
                             <h1 className='text-lg font-semibold '>And also</h1>
                             <h1 className='text-lg font-semibold text-white'>Do chat with them</h1>
                           </div>
-                          <h1 className='text-xl font-semibold p-3 text-amber-400'>Register Now !!</h1>
+                          {/* <h1 className='text-xl font-semibold p-3 text-amber-400'>Register Now !!</h1> */}
                           <NavLink to={"/reg"} className='text-lg bg-amber-600 text-white p-2 cursor-pointer rounded-xl '>Sign-up</NavLink>
                         </>
                       }
@@ -93,7 +127,7 @@ export default function Home() {
             )}
           </div>
 
-          <div className='md:w-[60%] mt-17  '>
+          <div className='hidden md:flex md:w-[60%] md:flex-col  mt-17  '>
             {user ? (
               <>
                 {selected.length > 0 ? (

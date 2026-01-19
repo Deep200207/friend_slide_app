@@ -20,15 +20,15 @@ export default function Login() {
             <div className='md:w-[80%] '>
                 <h1 className='text-center text-3xl font-bold font-sans mt-25'>Login Here </h1>
                 <div className=' mt-10 flex justify-center'>
-                    <div className='md:w-[50%] bg-gradient-to-b from-violet-600 via-violet-700 to-violet-800 text-gray-200 shadow-xl rounded-3xl text-center space-y-2 pt-15 p-2 md:p-5'>
-                        {error ? <h1 className='text-red-600 font-bold'>{error}</h1> : ""}
-                        {loading ? <h1 className='text-yellow-500 font-bold'>Loading....</h1> : ""}
+                    <div className='md:w-[50%] bg-gradient-to-b from-violet-600 via-violet-700 to-violet-800 text-gray-200 shadow-xl rounded-3xl text-center space-y-2 pt-15 mt-5 p-2 md:p-5'>
+                        {error ? <h1 className='text-red-600 font-bold md:mt-5'>{error}</h1> : ""}
+                        {loading ? <h1 className='text-yellow-500 font-bold md:mt-5'>Loading....</h1> : ""}
                         {response && (
-                            <h1 className='text-green-400 font-bold'>
+                            <h1 className='text-green-400 font-bold md:mt-5'>
                                 {response.message || ""}
                             </h1>
                         )}
-                        <div className='flex justify-center space-x-1 mt-3'>
+                        <div className='flex justify-center space-x-1 mt-5'>
                             <div className='p-1 md:text-lg w-23 md:w-25 font-bold '><h1 className='float-right'>Email:</h1></div>
                             <input type='text' value={email} placeholder='Enter Email' className='
                              text-black bg-slate-200 border-none outline-0 md:p-1 rounded p-1'
