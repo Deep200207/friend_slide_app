@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 
 import { SiSlides } from "react-icons/si";
+import { SiLiberadotchat } from "react-icons/si";
+import { PiChatsBold } from "react-icons/pi";
 // import { FiSend } from "react-icons/fi";
 import { LuSendHorizontal } from "react-icons/lu";
 import { logout } from '../features/authSlice';
@@ -39,7 +41,7 @@ export default function Home() {
     <>
       <div className='font-bold '>
         <div className='md:flex  w-full'>
-          <div className='md:w-[40%] mt-15'>
+          <div className='md:w-[50%] mt-15'>
             {frndsList.length > 0 && (!Toggle && !check) ? <h1 className='text-xl font-bold m-2 text-center'>Your Friends</h1> : (frndsList.length > 0) ? "" : <h1></h1>}
             {frndsList.length > 0 && (!Toggle && !check) ? (
               frndsList.map((data, i) => {
@@ -71,10 +73,11 @@ export default function Home() {
                   {/* <h1 className='m-2 mt-3 '>{selected[0]?.name}</h1> */}
                   <div className='w-full p-2'>
                     <div className=''>
-                      <button className='float-right bg-purple-500 pl-2 pr-2 font-semibold rounded-full' 
-                      onClick={()=>{
-                        setCheck(false)
-                        setToggle(!Toggle)}}> X </button>
+                      <button className='float-right bg-purple-500 pl-2 pr-2 font-semibold rounded-full'
+                        onClick={() => {
+                          setCheck(false)
+                          setToggle(!Toggle)
+                        }}> X </button>
                     </div>
                   </div>
                 </div>
@@ -89,13 +92,13 @@ export default function Home() {
               <>
                 <div className='md:flex justify-center h-150 items-center w-full '>
                   <div className='w-full md:w-[100%] text-center md:m-20  float-right mt-20 md:mt-20'>
-                    <h1 className='text-2xl md:text-3xl lg:text-5xl font-sans'>A New Way</h1>
+                    <h1 className='text-2xl md:text-3xl lg:text-5xl font-sans'>A New Way to</h1>
                     <div className='flex justify-center'>
-                      <div className='flex space-x-3 text-3xl md:text-4xl lg:text-5xl font-sans mt-2'>
-                        <h1>to</h1> <h1 className='text-amber-400 text-shadow-lg text-shadow-orange-600'>FlashCard..</h1>
+                      <div className='flex space-x-3 text-3xl md:text-4xl lg:text-5xl font-sans md:mt-2'>
+                        <h1 className='mt-2'>make</h1> <h1 className='text-amber-400 text-shadow-lg text-shadow-orange-600 mt-2'>Friends...</h1>
                       </div>
                     </div>
-                    <div className='mt-10  justify-center space-x-2 text-xl lg:text-2xl'>
+                    <div className=' mt-5 md:mt-10  justify-center space-x-2 text-xl lg:text-2xl'>
                       {user ? <>
                         <div className='flex justify-center space-x-2'>
                           <h1>Hello.. </h1> <h1 className='text-amber-300 text-shadow-amber-700 text-shadow-lg'>{user.data.name}</h1>
@@ -106,15 +109,18 @@ export default function Home() {
                       </> :
                         <>
                           <div className='flex justify-center items-center'>
-                            <SiSlides className='md:hidden w-[40%] h-[40%] p-5 bg-orange-400 text-violet-900 rounded mb-10'></SiSlides>
+                            <div>
+                              <PiChatsBold className='md:hidden w-20 h-20  p-5 bg-orange-400 text-violet-900 rounded-full'></PiChatsBold>
+                            </div>
                           </div>
+                              <h1 className='md:hidden text-center text-xl text-shadow-lg text-shadow-amber-700 p-2' id='app_name' >.:. VibeSlide .:.</h1>
                           <div className='p-5 text-amber-400 mb-8 md:mb-5'>
                             <h1 className='text-lg font-semibold '>Create flashcards of friends</h1>
                             <h1 className='text-lg font-semibold '>And also</h1>
                             <h1 className='text-lg font-semibold text-white'>Do chat with them</h1>
                           </div>
                           {/* <h1 className='text-xl font-semibold p-3 text-amber-400'>Register Now !!</h1> */}
-                          <NavLink to={"/reg"} className='text-lg bg-amber-600 text-white p-2 cursor-pointer rounded-xl '>Sign-up</NavLink>
+                          <NavLink to={"/reg"} className='text-lg bg-amber-600 text-white p-2 cursor-pointer rounded-xl '>Join VibeSlide</NavLink>
                         </>
                       }
                     </div>
@@ -166,8 +172,12 @@ export default function Home() {
                 </div>}
               </>
             ) : (
-              <div className='mt-20  p-2 hidden md:flex justify-center items-center w-full  h-130'>
-                <SiSlides className='w-70 h-70 p-5 bg-orange-400 text-violet-700 rounded-xl'></SiSlides>
+              <div className='mt-25  p-2 hidden md:flex justify-center items-center w-full'>
+                <div>
+                  <PiChatsBold className='w-65 h-65 p-5 bg-orange-400 text-violet-900 rounded-full'></PiChatsBold>
+                  <h1 className='text-center text-4xl text-shadow-lg text-shadow-amber-700
+                p-2' id='app_name' >.:. VibeSlide .:.</h1>
+                </div>
               </div>
             )}
           </div>
